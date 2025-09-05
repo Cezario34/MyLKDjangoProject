@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}Личный кабинет{% endblock %}</title>
+
+  <style>
+    :root {
+      --bg: #fff3e0;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #f59e0b;
+      --radius: 16px;
+      --shadow: 0 6px 20px rgba(0,0,0,.06);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;   /* ≤ 500px как и планировали */
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Верхняя панель */
+    .topbar {
+      margin: 12px 0 16px;
+      padding: 10px 12px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand { font-weight: 700; letter-spacing: .2px; }
+    .muted { color: var(--muted); font-size: .9rem; }
+
+    .userbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, .12);
+      color: #8a5800;
+      font-size: .8rem;
+      white-space: nowrap;
+    }
+    a { color: inherit; text-decoration: none; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #111827;
+      font-weight: 600;
+      transition: transform .08s ease, filter .15s ease;
+    }
+    .btn:hover { filter: brightness(0.95); }
+    .btn:active { transform: translateY(1px); }
+
+    /* Карточка контента */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      min-height: 200px;
+    }
+
+    /* Системные сообщения (опционально) */
+    .messages { margin: 0 0 12px; padding: 0; list-style: none; }
+    .messages li {
+      margin: 8px 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      font-size: .95rem;
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: .85rem;
+      text-align: center;
+      padding: 24px 0 12px;
+    }
+  </style>
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <div class="container">
+    <!-- Верхняя панель -->
+    <header class="topbar">
+      <div class="brand">
+        Личный кабинет <span class="muted">MVP</span>
+      </div>
+      <div class="userbox">
+        <!-- Пока без логики: две заглушки -->
+        <a href="#" class="btn">Войти</a>
+        <a href="#" class="btn">Профиль</a>
+        <!-- Позже сюда добавим бейджи баланса/грейда/тарифа -->
+      </div>
+    </header>
+
+    <!-- Сообщения (опционально; позже подключим messages) -->
+    <ul class="messages" style="display:none">
+      <li>Сообщение системы</li>
+    </ul>
+
+    <!-- Основной контент -->
+    <main class="card">
+      {% block content %}
+      <!-- Контент страницы -->
+      {% endblock %}
+    </main>
+
+    <footer>
+      {% block footer %}
+      © ЛК
+      {% endblock %}
+    </footer>
+  </div>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
