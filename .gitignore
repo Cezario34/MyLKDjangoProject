@@ -4,3 +4,8 @@ core/.env
 __pycache__/
 .mypy_cache/
 .env
+core/db.sqlite3
+*.sqlite3
+.idea/ .vscode/
+__pycache__/
+.env

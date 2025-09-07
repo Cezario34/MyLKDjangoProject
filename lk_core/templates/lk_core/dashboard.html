@@ -5,6 +5,11 @@
 
 {% block content %}
   <h1 style="margin:0 0 8px;">Добро пожаловать</h1>
+  <h1> Баланс {{ balance }} </h1>
+  <form method = "post" action="{% url 'lk_core:award_plus10'%}">
+    {% csrf_token %}
+    <button type="submit" class="btn">+10</button>
+  </form>
   <p>Это заглушка дашборда. Шаблон наследуется от <code>lk_core/base.html</code>.</p>
-
+  <p><a href="{% url 'lk_core:award' amount=25%}">+ 25 по URL</a></p>
 {% endblock %}

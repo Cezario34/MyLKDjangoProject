@@ -23,7 +23,20 @@
       color: var(--text);
       font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
     }
+    .messages { margin: 12px 0; padding: 0; list-style: none; }
 
+    /* общий вид любого сообщения */
+    .msg {
+      margin: 8px 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--accent); /* <-- задаём сам бордер */
+    }
+
+    /* раскраска по типам (m.tags) */
+    .msg.success { border-left-color: #10b981; }
     .container {
       width: 100%;
       max-width: 500px;   /* ≤ 500px как и планировали */
@@ -123,9 +136,13 @@
     </header>
 
     <!-- Сообщения (опционально; позже подключим messages) -->
-    <ul class="messages" style="display:none">
-      <li>Сообщение системы</li>
+    {% if messages %}
+    <ul class="messages">
+      {% for m in messages %}
+      <li class="msg {{ m.tags}} ">{{ m }}</li>
+      {% endfor %}
     </ul>
+    {% endif %}
 
     <!-- Основной контент -->
     <main class="card">
